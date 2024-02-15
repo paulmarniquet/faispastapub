@@ -37,6 +37,8 @@
 import SelectPicker from "~/components/SelectPicker.vue";
 import Pixel from "~/components/Pixel.vue";
 
+const config = useRuntimeConfig();
+
 const selectedColor = ref('');
 const urlInput = ref('');
 const pixelColors = ref([]);
@@ -50,11 +52,13 @@ onBeforeMount(() => {
 });
 
 function getPixels() {
-  const pixels = fetch(process.env.API_URL + '/api/pixels',
+  console.log(config.public.API_URL + '/api/pixels');
+  const pixels = fetch(config.public.API_URL + '/api/pixels',
       {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
         },
       }
   );
@@ -70,7 +74,7 @@ function editModeTrue() {
 
 function initPixels() {
   for (let i = 0; i < 100; i++) {
-    fetch(process.env.API_URL + '/api/pixels', {
+    fetch(config.public.API_URL + '/api/pixels', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -85,7 +89,7 @@ function initPixels() {
 
 function updatePixels() {
   for (let i = 0; i < pixelsModified.value.length; i++) {
-    fetch(process.env.API_URL + '/api/pixels/' + pixelsModified.value[i], {
+    fetch(config.public.API_URL + '/api/pixels/' + pixelsModified.value[i], {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
