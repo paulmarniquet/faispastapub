@@ -50,7 +50,7 @@ onBeforeMount(() => {
 });
 
 function getPixels() {
-  const pixels = fetch('http://localhost:3000/api/pixels',
+  const pixels = fetch(process.env.API_URL + '/api/pixels',
       {
         method: 'GET',
         headers: {
@@ -70,7 +70,7 @@ function editModeTrue() {
 
 function initPixels() {
   for (let i = 0; i < 100; i++) {
-    fetch('http://localhost:3000/api/pixels', {
+    fetch(process.env.API_URL + '/api/pixels', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ function initPixels() {
 
 function updatePixels() {
   for (let i = 0; i < pixelsModified.value.length; i++) {
-    fetch('http://localhost:3000/api/pixels/' + pixelsModified.value[i], {
+    fetch(process.env.API_URL + '/api/pixels/' + pixelsModified.value[i], {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
