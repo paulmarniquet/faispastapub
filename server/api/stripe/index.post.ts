@@ -1,36 +1,22 @@
-/*
 import Stripe from 'stripe';
+import {PrismaClient} from "@prisma/client";
 
 export default defineEventHandler(async (event) => {
-    const config = useRuntimeConfig();
-    const stripe = new Stripe(config.STRIPE_SECRET_KEY);
-
-    const session = async () => {
-        const session = await stripe.checkout.sessions.create({
-            payment_method_types: ['card'],
-            line_items: [
-                {
-                    price_data: {
-                        currency: 'usd',
-                        product_data: {
-                            name: 'T-shirt',
-                        },
-                        unit_amount: 2000,
-                    },
-                    quantity: 1,
+    const prisma = new PrismaClient();
+    try {
+        const stripeEvent = await readBody<Stripe.Event>(event);
+        if (stripeEvent.type === 'checkout.session.completed') {
+            const stripeEventData = stripeEvent.data.object;
+            console.log(stripeEventData.client_reference_id);
+            prisma.payments.create({
+                data: {
+                    payment: stripeEventData.client_reference_id,
                 },
-            ],
-            mode: 'payment',
-            success_url: `${process.env.BASE_URL}/success`,
-            cancel_url: `${process.env.BASE_URL}/cancel`,
-        });
-
-        return {
-            statusCode: 200,
-            body: JSON.stringify({
-                sessionId: session.id,
-            }),
-        };
+            });
+        }
+        return new Response('OK', {status: 200});
+    } catch (e) {
+        console.error(e);
+        return new Response('Error', {status: 500});
     }
 });
-*/

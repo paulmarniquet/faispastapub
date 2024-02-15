@@ -13,8 +13,9 @@ const pixelsModified = ref([]);
 let editMode = ref(false);
 const pixelArray = ref([]);
 
-onBeforeMount(() => {
-  getPixels();
+onBeforeMount(async () => {
+  await successPayment();
+  await getPixels();
 });
 
 async function getPixels() {
@@ -38,6 +39,30 @@ function editModeTrue() {
   editMode.value = !editMode.value;
 }
 
+async function successPayment() {
+  const payment = await fetch(config.public.API_URL + '/api/payments', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      index: localStorage.getItem('pid')
+    })
+  });
+  if (payment.status === 200) {
+    const pixels = JSON.parse(localStorage.getItem('pixels'));
+    await fetch(config.public.API_URL + '/api/pixels', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(pixels)
+    });
+    localStorage.removeItem('pixels');
+  }
+}
+
+/*
 function updatePixels() {
   for (let i = 0; i < pixelsModified.value.length; i++) {
     fetch(config.public.API_URL + '/api/pixels/' + pixelsModified.value[i], {
@@ -52,6 +77,7 @@ function updatePixels() {
     });
   }
 }
+*/
 
 function changeColor({id, color}) {
   if (editMode.value) {

@@ -26,21 +26,20 @@ async function openPaymentForm() {
     url: props.urlInput || 'www.paulmarniquet.com',
   }));
 
+  const pid = Math.floor(Math.random() * 1000000);
+  localStorage.setItem('pixels', JSON.stringify(finalArrayPixels));
+
   const stripe = await loadStripe(config.public.STRIPE_SECRET_KEY);
   const response = await stripe.redirectToCheckout({
     lineItems: [{
       price: config.public.PRICE_ID,
       quantity: props.numberPixels,
     }],
-    successUrl: config.public.API_URL + '?payment=success',
+    successUrl: config.public.API_URL + '?payment=success?pid=' + pid,
     cancelUrl: config.public.API_URL + '?payment=cancel',
+    clientReferenceId: pid.toString(),
     mode: 'payment',
     locale: 'fr',
   });
-
-  if (!response.error) {
-    emits('payment-successful');
-    alert('Paiement effectué avec succès');
-  }
 }
 </script>
