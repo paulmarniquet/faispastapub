@@ -9,7 +9,12 @@ export default defineEventHandler(async (event) => {
                 id: 'asc'
             }
         });
-        return new Response(JSON.stringify(pixels), {status: 200, headers: {'Content-Type': 'application/json'}});
+        return new Response(JSON.stringify(pixels), {
+            status: 200,
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
     } catch (e) {
         console.error(e);
         return new Response('Error', {status: 500});

@@ -50,23 +50,19 @@ onBeforeMount(() => {
   getPixels();
 });
 
-function getPixels() {
-  console.log(config.public.API_URL + '/api/pixels');
-  const pixels = fetch(config.public.API_URL + '/api/pixels',
+async function getPixels() {
+  const pixels = await fetch(config.public.API_URL + '/api/pixels',
       {
-        mode: 'no-cors',
+        mode: 'cors',
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          "Access-Control-Allow-Credentials": true
         },
       }
   );
-  pixels.then(response => response.json()).then(data => {
-    pixelArray.value = data;
-    pixelColors.value = data.map(pixel => pixelArray.value[pixel.id - 1].color);
-  });
+  const pixelsJson = await pixels.json();
+  pixelArray.value = pixelsJson;
+  pixelColors.value = pixelsJson.map(pixel => pixelArray.value[pixel.id - 1].color);
 }
 
 function editModeTrue() {
@@ -77,6 +73,7 @@ function initPixels() {
   for (let i = 0; i < 100; i++) {
     fetch(config.public.API_URL + '/api/pixels', {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -91,6 +88,7 @@ function initPixels() {
 function updatePixels() {
   for (let i = 0; i < pixelsModified.value.length; i++) {
     fetch(config.public.API_URL + '/api/pixels/' + pixelsModified.value[i], {
+      mode: 'no-cors',
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
