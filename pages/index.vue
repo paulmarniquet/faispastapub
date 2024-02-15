@@ -88,7 +88,6 @@ function initPixels() {
 function updatePixels() {
   for (let i = 0; i < pixelsModified.value.length; i++) {
     fetch(config.public.API_URL + '/api/pixels/' + pixelsModified.value[i], {
-      mode: 'no-cors',
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

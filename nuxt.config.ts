@@ -4,7 +4,7 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         public: {
-            API_URL: process.env.API_URL || "http://localhost:3000",
+            API_URL: process.env.API_URL,
             POSTGRES_PRISMA_URL: process.env.POSTGRES_PRISMA_URL,
             POSTGRES_URL_NON_POOLING: process.env.POSTGRES_URL_NON_POOLING,
         }
