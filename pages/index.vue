@@ -71,7 +71,16 @@ function editModeTrue() {
 }
 
 async function successPayment() {
-  if (localStorage.getItem('pid') && localStorage.getItem('pixels')) {
+  const payment = await fetch(config.public.API_URL + '/api/payments', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      index: localStorage.getItem('pid')
+    })
+  });
+  if (payment.status === 200) {
     const pixels = JSON.parse(localStorage.getItem('pixels'));
     await fetch(config.public.API_URL + '/api/pixels', {
       method: 'PUT',
@@ -80,9 +89,8 @@ async function successPayment() {
       },
       body: JSON.stringify(pixels)
     });
+    localStorage.removeItem('pixels');
   }
-  localStorage.removeItem('pid');
-  localStorage.removeItem('pixels');
 }
 
 /*

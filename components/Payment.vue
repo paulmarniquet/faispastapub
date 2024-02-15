@@ -27,7 +27,6 @@ async function openPaymentForm() {
   }));
 
   const pid = Math.floor(Math.random() * 1000000);
-  localStorage.setItem('pid', pid);
   localStorage.setItem('pixels', JSON.stringify(finalArrayPixels));
 
   const stripe = await loadStripe(config.public.STRIPE_SECRET_KEY);
@@ -37,14 +36,10 @@ async function openPaymentForm() {
       quantity: props.numberPixels,
     }],
     successUrl: config.public.API_URL + '?payment=success?pid=' + pid,
-    cancelUrl: config.public.API_URL + '?payment=cancel?pid=' + pid,
+    cancelUrl: config.public.API_URL + '?payment=cancel',
+    clientReferenceId: pid.toString(),
     mode: 'payment',
     locale: 'fr',
   });
-
-  if (!response.error) {
-    emits('payment-successful');
-    alert('Paiement effectué avec succès');
-  }
 }
 </script>
