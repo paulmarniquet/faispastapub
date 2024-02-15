@@ -6,9 +6,6 @@
           <SelectPicker v-model="selectedColor"/>
           <input type="text" v-model="urlInput" class="w-full h-10 border-2 border-black rounded-lg"/>
           <p>{{ counter }} euros</p>
-          <!--
-                    <p>Modified Pixels: {{ pixelsModified }}</p>
-          -->
           <button v-if="editMode" @click="updatePixels"
                   class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Envoyer
@@ -16,6 +13,12 @@
           <button @click="editModeTrue" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Editer
           </button>
+          <Payment :number-pixels="counter"
+                   @payment-successful="updatePixels"
+                   :pixelsModified="pixelsModified"
+                   :pixelColors="pixelColors"
+                   :urlInput="urlInput"
+          />
         </div>
       </div>
       <div class="grid" ref="grid">
@@ -27,15 +30,15 @@
                @changeColor="changeColor"
         />
       </div>
-
-
     </div>
   </div>
 </template>
 
 <script setup>
+import Payment from "~/components/Payment.vue";
 import SelectPicker from "~/components/SelectPicker.vue";
 import Pixel from "~/components/Pixel.vue";
+
 const config = useRuntimeConfig();
 
 const selectedColor = ref('');
@@ -51,38 +54,24 @@ onBeforeMount(() => {
 });
 
 async function getPixels() {
-  const pixels = await fetch(config.public.API_URL + '/api/pixels',
-      {
-        mode: 'cors',
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-  );
-  const pixelsJson = await pixels.json();
-  pixelArray.value = pixelsJson;
-  pixelColors.value = pixelsJson.map(pixel => pixelArray.value[pixel.id - 1].color);
+  try {
+    const pixelsResponse = await fetch(config.public.API_URL + '/api/pixels', {
+      mode: 'cors',
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const pixelsJson = await pixelsResponse.json();
+    pixelArray.value = pixelsJson;
+    pixelColors.value = pixelsJson.map(pixel => pixelArray.value[pixel.id - 1].color);
+  } catch (error) {
+    console.error("Erreur lors de la récupération des pixels:", error);
+  }
 }
 
 function editModeTrue() {
   editMode.value = !editMode.value;
-}
-
-function initPixels() {
-  for (let i = 0; i < 100; i++) {
-    fetch(config.public.API_URL + '/api/pixels', {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        color: 'white',
-        url: 'https://www.paulmarniquet.fr'
-      })
-    });
-  }
 }
 
 function updatePixels() {
@@ -116,10 +105,8 @@ function changeColor({id, color}) {
 </script>
 
 <style scoped>
-
 .grid {
   grid-template-columns: repeat(50, 1fr);
   grid-template-rows: repeat(100, 1fr);
 }
-
 </style>
