@@ -11,13 +11,14 @@
 
 html.light {
   --color-primary: 100, 217, 138;
-  --color-background: 236, 235, 232;
-  --color-text: 11, 10, 10;
-
+  --color-background: 248, 248, 248;
+  --color-second: 255, 255, 255;
+  --color-text: 19, 17, 19;
 }
 
 html.dark {
   --color-primary: 100, 217, 138;
-  --color-background: 11, 10, 10;
-  --color-text: 236, 235, 232;
+  --color-background: 19, 17, 19;
+  --color-second: 28, 28, 30;
+  --color-text: 248, 248, 248;
 }

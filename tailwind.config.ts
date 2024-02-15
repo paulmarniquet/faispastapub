@@ -15,7 +15,7 @@ export default {
         "./components/**/*.{js,vue,ts}",
         "./layouts/**/*.vue",
         "./pages/**/*.vue",
-        "./app.vue",
+        "./default.vue",
         "./error.vue",
     ],
     theme: {
@@ -24,6 +24,7 @@ export default {
                 "color-primary": withOpacity("--color-primary"),
                 "color-background": withOpacity("--color-background"),
                 "color-text": withOpacity("--color-text"),
+                "color-secondary": withOpacity("--color-secondary"),
             },
         },
     },

@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { inject } from 'vue'
+const color = inject('color');
+
 const eventSidePannel = ref(true);
-const color = defineModel({required: true});
 
 const toggleColorPicker = () => {
   showColorPicker.value = !showColorPicker.value;

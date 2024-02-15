@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
     css: ["~/assets/style/main.scss"],
-    modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss"],
+    modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss", 'nuxt-lucide-icons'],
 
     runtimeConfig: {
         public: {
@@ -13,12 +13,11 @@ export default defineNuxtConfig({
     },
 
     colorMode: {
-        preference: "system",
-        fallback: "dark",
+        preference: "light",
+        fallback: "light",
         classSuffix: '',
         storageKey: "nuxt-starter-color-mode",
     },
-
 
     devtools: {enabled: true},
 })

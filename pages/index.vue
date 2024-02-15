@@ -1,50 +1,14 @@
-<template>
-  <div class="flex flex-col justify-between bg-white">
-    <div class="flex flex-center justify-start w-screen">
-      <div class="w-1/4 flex flex-col justify-items-start items-center">
-        <div>
-          <SelectPicker v-model="selectedColor"/>
-          <input type="text" v-model="urlInput" class="w-full h-10 border-2 border-black rounded-lg"/>
-          <p>{{ counter }} euros</p>
-          <button v-if="editMode" @click="updatePixels"
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Envoyer
-          </button>
-          <button @click="editModeTrue" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Editer
-          </button>
-          <Payment :number-pixels="counter"
-                   @payment-successful="updatePixels"
-                   :pixelsModified="pixelsModified"
-                   :pixelColors="pixelColors"
-                   :urlInput="urlInput"
-          />
-        </div>
-      </div>
-      <div class="grid" ref="grid">
-        <Pixel v-for="(color, index) in pixelColors" :key="index" :id="index + 1"
-               :initialColor="color"
-               :selectedColor="selectedColor"
-               :editMode="editMode"
-               :url="pixelArray[index].url"
-               @changeColor="changeColor"
-        />
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import Payment from "~/components/Payment.vue";
 import SelectPicker from "~/components/SelectPicker.vue";
 import Pixel from "~/components/Pixel.vue";
+import { inject } from 'vue'
+const colorPicker = inject('color');
+const counter = inject('counter');
 
 const config = useRuntimeConfig();
-
-const selectedColor = ref('');
 const urlInput = ref('');
 const pixelColors = ref([]);
-const counter = ref(0);
 const pixelsModified = ref([]);
 let editMode = ref(false);
 const pixelArray = ref([]);
@@ -103,6 +67,40 @@ function changeColor({id, color}) {
   }
 }
 </script>
+
+<template>
+  <div class="h-screen flex flex-col justify-between bg-white rounded-tl-lg overflow-hidden shadow-md border border-inherit">
+    <div class="flex flex-center justify-start w-screen">
+      <div class="w-1/4 flex flex-col justify-items-start items-center">
+        <div>
+          <input type="text" v-model="urlInput" class="w-full h-10 border-2 border-black rounded-lg"/>
+          <button v-if="editMode" @click="updatePixels"
+                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Envoyer
+          </button>
+          <button @click="editModeTrue" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Editer
+          </button>
+          <Payment :number-pixels="counter"
+                   @payment-successful="updatePixels"
+                   :pixelsModified="pixelsModified"
+                   :pixelColors="pixelColors"
+                   :urlInput="urlInput"
+          />
+        </div>
+      </div>
+      <div class="grid" ref="grid">
+        <Pixel v-for="(color, index) in pixelColors" :key="index" :id="index + 1"
+               :initialColor="color"
+               :selectedColor="colorPicker"
+               :editMode="editMode"
+               :url="pixelArray[index].url"
+               @changeColor="changeColor"
+        />
+      </div>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .grid {
