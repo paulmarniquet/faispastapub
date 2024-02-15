@@ -6,15 +6,10 @@
           <SelectPicker v-model="selectedColor"/>
           <input type="text" v-model="urlInput" class="w-full h-10 border-2 border-black rounded-lg"/>
           <p>{{ counter }} euros</p>
-          <button v-if="editMode" @click="updatePixels"
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Envoyer
-          </button>
           <button @click="editModeTrue" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Editer
           </button>
           <Payment :number-pixels="counter"
-                   @payment-successful="updatePixels"
                    :pixelsModified="pixelsModified"
                    :pixelColors="pixelColors"
                    :urlInput="urlInput"
@@ -49,8 +44,9 @@ const pixelsModified = ref([]);
 let editMode = ref(false);
 const pixelArray = ref([]);
 
-onBeforeMount(() => {
-  getPixels();
+onBeforeMount(async () => {
+  await successPayment();
+  await getPixels();
 });
 
 async function getPixels() {
@@ -74,6 +70,22 @@ function editModeTrue() {
   editMode.value = !editMode.value;
 }
 
+async function successPayment() {
+  if (localStorage.getItem('pid') && localStorage.getItem('pixels')) {
+    const pixels = JSON.parse(localStorage.getItem('pixels'));
+    await fetch(config.public.API_URL + '/api/pixels', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(pixels)
+    });
+  }
+  localStorage.removeItem('pid');
+  localStorage.removeItem('pixels');
+}
+
+/*
 function updatePixels() {
   for (let i = 0; i < pixelsModified.value.length; i++) {
     fetch(config.public.API_URL + '/api/pixels/' + pixelsModified.value[i], {
@@ -88,6 +100,7 @@ function updatePixels() {
     });
   }
 }
+*/
 
 function changeColor({id, color}) {
   if (editMode.value) {
