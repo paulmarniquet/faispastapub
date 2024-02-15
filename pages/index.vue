@@ -36,7 +36,6 @@
 <script setup>
 import SelectPicker from "~/components/SelectPicker.vue";
 import Pixel from "~/components/Pixel.vue";
-
 const config = useRuntimeConfig();
 
 const selectedColor = ref('');
@@ -55,6 +54,7 @@ function getPixels() {
   console.log(config.public.API_URL + '/api/pixels');
   const pixels = fetch(config.public.API_URL + '/api/pixels',
       {
+        mode: 'no-cors',
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
