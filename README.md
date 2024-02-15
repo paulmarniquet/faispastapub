@@ -1,89 +1,31 @@
-![image](public/project-preview.png)
+# Million Dollar Homepage
 
-It's a minimal starter for Nuxt 3 and start building your next web application simply and quickly. Including :
+Bienvenue sur la recréation de la célèbre "Homepage à un million de dollars" ! Notre projet vous permet de devenir
+propriétaire d'un pixel pour seulement 1 euro, où vous pouvez afficher votre propre publicité. C'est une opportunité
+unique d'afficher votre message à un large public sur une plateforme emblématique.
 
-- [Tailwind CSS](https://tailwindcss.com/)
-- Color mode (dark & light)
+## Fonctionnalités
 
-## Quick Setup
+- **Achat de Pixels**: Choisissez le pixel que vous souhaitez acheter sur la grille et ajoutez votre publicité.
 
---- 
+- **Gestion de Publicité**: Téléchargez votre image publicitaire et spécifiez le lien vers lequel vous souhaitez
+  rediriger les utilisateurs lorsqu'ils cliquent sur votre pixel.
 
-To get started, follow these steps:
+- **Interface Intuitive**: Une interface utilisateur conviviale vous permet de naviguer facilement à travers la grille
+  et de gérer vos pixels.
 
-```bash
-# npm
-npm install
+## Environnement Technique
 
-# pnpm
-pnpm install
+- **Framework Frontend**: Nous utilisons [Nuxt.js](https://nuxtjs.org/), un framework Vue.js qui permet de créer des
+  applications web puissantes et évolutives.
 
-# yarn
-yarn install
+- **Base de Données**: Nous avons opté pour PostgreSQL comme système de gestion de base de données pour stocker toutes
+  les informations sur les pixels achetés et les publicités associées.
 
-# bun
-bun install
-```
-
-## Development Server
+- **ORM**: Nous utilisons Prisma comme ORM (Object-Relational Mapping) pour faciliter l'interaction avec notre base de
+  données PostgreSQL.
 
 ---
 
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
----
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-## Author
-
----
-
-- [Johann Cavallucci]('https://github.com/cavalluccijohann')
-
+Nous espérons que vous apprécierez utiliser notre "Million Dollar Homepage" ! Si vous avez des questions ou des
+suggestions, n'hésitez pas à nous contacter. Merci de votre soutien ! 🚀
