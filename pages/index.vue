@@ -22,7 +22,6 @@ function handleLinks() {
   links.forEach(link => {
     if (link.href === "https://www.paulmarniquet.fr/") {
       link.style.pointerEvents = 'none';
-      console.log(link);
     }
   });
 }
@@ -74,12 +73,12 @@ async function successPayment() {
 
 function changeColor({id, color}) {
     if (pixelColors.value[id] === 'white') {
-      pixelColors.value[id] = color;
       counter.value++;
+      pixelColors.value[id] = color;
       pixelsModified.value.push(id);
     } else if (pixelColors.value[id] !== color && color === 'white') {
-      pixelColors.value[id] = 'white';
       counter.value--;
+      pixelColors.value[id] = 'white';
       pixelsModified.value = pixelsModified.value.filter(pixel => pixel !== id);
     }
 }
@@ -118,7 +117,7 @@ function changeColor({id, color}) {
 
 <style scoped>
 .grid {
-  grid-template-columns: repeat(50, 1fr);
+  grid-template-columns: repeat(100, 1fr);
   grid-template-rows: repeat(100, 1fr);
 }
 </style>

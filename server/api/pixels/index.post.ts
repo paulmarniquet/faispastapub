@@ -12,13 +12,15 @@ export default defineEventHandler(async (event) => {
         }
 
         const body = await readBody(event);
+        for (let i = 0; i < 1000; i++) {
         const pixel = await prisma.pixels.create({
             data: {
                 color: body.color,
                 url: body.url,
             },
         });
-        return new Response(JSON.stringify(pixel), {status: 201, headers: {'Content-Type': 'application/json'}});
+        }
+        return new Response(null, {status: 201, headers: {'Content-Type': 'application/json'}});
     } catch (e) {
         console.error(e);
         return new Response('Error', {status: 500});
