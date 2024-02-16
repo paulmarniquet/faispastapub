@@ -1,6 +1,5 @@
 <script setup>
 import Payment from "~/components/Payment.vue";
-import SelectPicker from "~/components/SelectPicker.vue";
 import Pixel from "~/components/Pixel.vue";
 import {inject} from 'vue'
 
@@ -62,6 +61,8 @@ async function successPayment() {
         body: JSON.stringify(pixels)
       });
       localStorage.removeItem('pixels');
+    } else {
+      console.error('Erreur lors de la validation du paiement');
     }
   }
 }
@@ -87,7 +88,10 @@ function changeColor({id, color}) {
     <div class="flex flex-center justify-start w-screen">
       <div class="w-1/4 flex flex-col justify-items-start items-center">
         <div>
-          <input type="text" v-model="urlInput" class="w-full h-10 border-2 border-black rounded-lg"/>
+          <input type="url"
+                 placeholder="https//www.votresite.com"
+                 v-model="urlInput"
+                 class="w-full h-10 border-2 border-black rounded-lg p-2"/>
 
           <button @click="editModeTrue" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Editer
