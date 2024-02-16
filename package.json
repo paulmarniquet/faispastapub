@@ -26,8 +26,10 @@
     "@liveblocks/client": "^1.9.8",
     "@prisma/client": "^5.9.1",
     "@stripe/stripe-js": "^3.0.2",
+    "fetch": "^1.1.0",
     "h3": "^1.10.1",
     "prisma": "^5.9.1",
-    "stripe": "^14.16.0"
+    "stripe": "^14.16.0",
+    "ws": "^8.16.0"
   }
 }
