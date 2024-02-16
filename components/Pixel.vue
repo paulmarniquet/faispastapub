@@ -21,6 +21,13 @@ const selected = ref(false);
 const updatingColor = ref(false);
 const color = ref(props.initialColor);
 
+const links = document.querySelectorAll('.color-picker a');
+for (let i = 0; i < links.length; i++) {
+  if (links[i].href !== "https://www.paulmarniquet.com") {
+    links[i].style.pointerEvents = 'none';
+  }
+}
+
 function handleClick() {
   if (props.editMode) {
     if (color.value === 'white') {
@@ -54,8 +61,6 @@ function handleClick() {
 }
 
 .color-picker {
-  position: relative;
-  font-size: 10px;
   width: 20px;
   height: 20px;
 }
