@@ -23,7 +23,6 @@ const updatingColor = ref(false);
 const color = ref(props.initialColor);
 
 function handleClick() {
-  console.log(props.initialColor + ' ' + props.selectedColor);
   if (props.editMode) {
     if (!updatingColor.value) {
       updatingColor.value = true;

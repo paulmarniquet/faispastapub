@@ -2,7 +2,8 @@
 import Payment from "~/components/Payment.vue";
 import SelectPicker from "~/components/SelectPicker.vue";
 import Pixel from "~/components/Pixel.vue";
-import { inject } from 'vue'
+import {inject} from 'vue'
+
 const colorPicker = inject('color');
 const counter = inject('counter');
 
@@ -40,44 +41,31 @@ function editModeTrue() {
 }
 
 async function successPayment() {
-  const payment = await fetch(config.public.API_URL + '/api/payments', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      index: localStorage.getItem('pid')
-    })
-  });
-  if (payment.status === 200) {
-    const pixels = JSON.parse(localStorage.getItem('pixels'));
-    await fetch(config.public.API_URL + '/api/pixels', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(pixels)
-    });
-    localStorage.removeItem('pixels');
-  }
-}
-
-/*
-function updatePixels() {
-  for (let i = 0; i < pixelsModified.value.length; i++) {
-    fetch(config.public.API_URL + '/api/pixels/' + pixelsModified.value[i], {
-      method: 'PUT',
+  const url = window.location.href;
+  if (url.includes('payment=success') && localStorage.getItem('pixels') !== null) {
+    const match = url.match(/[?&]pid=(\d+)/);
+    const payment = await fetch(config.public.API_URL + '/api/payments', {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        color: pixelColors.value[pixelsModified.value[i]],
-        url: urlInput.value || 'https://www.paulmarniquet.fr'
+        pid: match[1],
       })
     });
+    if (payment.status === 200) {
+      const pixels = JSON.parse(localStorage.getItem('pixels'));
+      await fetch(config.public.API_URL + '/api/pixels', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(pixels)
+      });
+      localStorage.removeItem('pixels');
+    }
   }
 }
-*/
 
 function changeColor({id, color}) {
   if (editMode.value) {
@@ -95,20 +83,17 @@ function changeColor({id, color}) {
 </script>
 
 <template>
-  <div class="h-screen flex flex-col justify-between bg-white rounded-tl-lg overflow-hidden shadow-md border border-inherit">
+  <div
+      class="h-screen flex flex-col justify-between bg-white rounded-tl-lg overflow-hidden shadow-md border border-inherit">
     <div class="flex flex-center justify-start w-screen">
       <div class="w-1/4 flex flex-col justify-items-start items-center">
         <div>
           <input type="text" v-model="urlInput" class="w-full h-10 border-2 border-black rounded-lg"/>
-          <button v-if="editMode" @click="updatePixels"
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Envoyer
-          </button>
+
           <button @click="editModeTrue" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Editer
           </button>
           <Payment :number-pixels="counter"
-                   @payment-successful="updatePixels"
                    :pixelsModified="pixelsModified"
                    :pixelColors="pixelColors"
                    :urlInput="urlInput"
