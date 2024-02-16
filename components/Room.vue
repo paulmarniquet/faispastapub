@@ -13,7 +13,6 @@
 
 <script setup lang="ts">
 import {createClient} from "@liveblocks/client";
-import {decode} from "base-64";
 
 const config = useRuntimeConfig();
 
@@ -22,9 +21,6 @@ const client = createClient({
   publicApiKey: config.public.LIVEBLOCKS_API_KEY,
   polyfills: {
     fetch: fetch as any,
-    atob(base64: string) {
-      return decode(base64);
-    },
   },
 });
 
