@@ -3,7 +3,13 @@ import {PrismaClient} from '@prisma/client';
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
+    const config = useRuntimeConfig();
+
     try {
+        const referer = event.headers.get('Referer');
+        if (!referer || !referer.includes(config.public.API_URL)) {
+            return new Response('Unauthorized', {status: 401});
+        }
         const body = await readBody(event);
         const payment = await prisma.payments.findFirst({
             where: {
