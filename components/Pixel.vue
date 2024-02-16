@@ -26,7 +26,6 @@ function handleClick() {
   if (props.editMode) {
     if (!updatingColor.value) {
       updatingColor.value = true;
-      props.initialColor = props.selectedColor;
       color.value = selected.value ? 'white' : props.selectedColor;
       emits('changeColor', {id: props.id, color: color.value});
       selected.value = !selected.value;
