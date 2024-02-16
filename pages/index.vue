@@ -9,13 +9,23 @@ const config = useRuntimeConfig();
 const urlInput = ref('');
 const pixelColors = ref([]);
 const pixelsModified = ref([]);
-let editMode = ref(false);
 const pixelArray = ref([]);
 
 onBeforeMount(async () => {
   await successPayment();
   await getPixels();
+  handleLinks();
 });
+
+function handleLinks() {
+  const links = document.querySelectorAll('.color-picker a');
+  links.forEach(link => {
+    if (link.href === "https://www.paulmarniquet.fr/") {
+      link.style.pointerEvents = 'none';
+      console.log(link);
+    }
+  });
+}
 
 async function getPixels() {
   try {
@@ -31,10 +41,6 @@ async function getPixels() {
   } catch (error) {
     console.error("Erreur lors de la récupération des pixels:", error);
   }
-}
-
-function editModeTrue() {
-  editMode.value = !editMode.value;
 }
 
 async function successPayment() {
@@ -67,7 +73,6 @@ async function successPayment() {
 }
 
 function changeColor({id, color}) {
-  if (editMode.value) {
     if (pixelColors.value[id] === 'white') {
       pixelColors.value[id] = color;
       counter.value++;
@@ -77,7 +82,6 @@ function changeColor({id, color}) {
       counter.value--;
       pixelsModified.value = pixelsModified.value.filter(pixel => pixel !== id);
     }
-  }
 }
 
 </script>
@@ -93,9 +97,6 @@ function changeColor({id, color}) {
                  v-model="urlInput"
                  class="w-full h-10 border-2 border-black rounded-lg p-2"/>
 
-          <button @click="editModeTrue" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Editer
-          </button>
           <Payment :number-pixels="counter"
                    :pixelsModified="pixelsModified"
                    :pixelColors="pixelColors"
@@ -107,7 +108,6 @@ function changeColor({id, color}) {
         <Pixel v-for="(color, index) in pixelColors" :key="index" :id="index + 1"
                :initialColor="color"
                :selectedColor="colorPicker"
-               :editMode="editMode"
                :url="pixelArray[index].url"
                @changeColor="changeColor"
         />

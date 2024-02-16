@@ -23,7 +23,7 @@ async function openPaymentForm() {
   const finalArrayPixels = props.pixelsModified.map(i => ({
     id: i,
     color: props.pixelColors[i],
-    url: props.urlInput || 'https://www.paulmarniquet.com',
+    url: props.urlInput || 'https://www.paulmarniquet.fr',
   }));
 
   const pid = Math.floor(Math.random() * 10000000);

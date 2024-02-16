@@ -3,7 +3,7 @@
        @click="handleClick"
        :style="{ backgroundColor: color }"
        class="border-[0.1px] bg-white color-picker">
-    <a v-if="!props.editMode" :href="props.url" aria-label="pixel"></a>
+    <a :href="props.url" aria-label="pixel"></a>
   </div>
 </template>
 
@@ -13,7 +13,6 @@ const props = defineProps({
   url: String,
   initialColor: String,
   selectedColor: String,
-  editMode: Boolean,
 });
 
 const emits = defineEmits(['changeColor']);
@@ -21,8 +20,8 @@ const selected = ref(false);
 const updatingColor = ref(false);
 const color = ref(props.initialColor);
 
+
 function handleClick() {
-  if (props.editMode) {
     if (color.value === 'white') {
       updatingColor.value = true;
       color.value = !selected.value ? props.selectedColor : 'white';
@@ -38,7 +37,7 @@ function handleClick() {
         updatingColor.value = false;
       }
     }
-  }
+
 }
 </script>
 
@@ -54,6 +53,8 @@ function handleClick() {
 }
 
 .color-picker {
+  position: relative;
+  font-size: 10px;
   width: 20px;
   height: 20px;
 }
