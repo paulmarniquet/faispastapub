@@ -20,23 +20,23 @@ const selected = ref(false);
 const updatingColor = ref(false);
 const color = ref(props.initialColor);
 
-
 function handleClick() {
-    if (color.value === 'white') {
+  if (color.value === 'white') {
+    updatingColor.value = true;
+    color.value = !selected.value ? props.selectedColor : 'white';
+    emits('changeColor', {id: props.id, color: color.value});
+    selected.value = !selected.value;
+    updatingColor.value = false;
+  } else {
+    const a = document.getElementById(props.id).querySelector('a');
+    if (color.value === props.selectedColor && a.style.pointerEvents === 'none' && (props.initialColor !== props.selectedColor)) {
       updatingColor.value = true;
-      color.value = !selected.value ? props.selectedColor : 'white';
+      color.value = 'white';
       emits('changeColor', {id: props.id, color: color.value});
-      selected.value = !selected.value;
+      selected.value = false;
       updatingColor.value = false;
-    } else {
-      if (color.value === props.selectedColor) {
-        updatingColor.value = true;
-        color.value = 'white';
-        emits('changeColor', {id: props.id, color: color.value});
-        selected.value = false;
-        updatingColor.value = false;
-      }
     }
+  }
 
 }
 </script>
