@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { inject } from 'vue'
+import {inject} from 'vue'
+
 const color = inject('color');
 
 const eventSidePannel = ref(true);
@@ -20,6 +21,7 @@ const showColorPicker = ref(false);
 
     <div class="color-picker">
       <div class="color-picker-content">
+        <label for="color"></label>
         <input type="color" v-model="color" @input="setColor">
       </div>
     </div>

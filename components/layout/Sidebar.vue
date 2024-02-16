@@ -16,7 +16,7 @@ import SelectPicker from "~/components/SelectPicker.vue";
         <div class="w-10 h-10 bg-color-primary"></div>
         <div class="flex flex-row items-center pr-3">
 
-          <a href="https://x.com/HugoRCD__?s=20">
+          <a href="https://x.com/HugoRCD__?s=20" aria-label="Twitter">
             <LucideTwitter
                 size="24"
                 class="text-color-text cursor-pointer hover:text-color-primary"

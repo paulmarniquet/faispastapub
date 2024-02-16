@@ -3,7 +3,7 @@
        @click="handleClick"
        :style="{ backgroundColor: color }"
        class="border-[0.1px] bg-white color-picker">
-    <a v-if="!props.editMode" :href="props.url"></a>
+    <a v-if="!props.editMode" :href="props.url" aria-label="pixel"></a>
   </div>
 </template>
 
