@@ -83,6 +83,13 @@ function changeColor({id, color}) {
 </script>
 
 <template>
+  <title>
+    La page à un million
+  </title>
+  <meta name="description" content="Pixel Art">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="public/favicon.ico">
   <div
       class="h-screen flex flex-col justify-between bg-white rounded-tl-lg overflow-hidden shadow-md border border-inherit">
     <div class="flex flex-center justify-start w-screen">
