@@ -21,7 +21,6 @@ const showColorPicker = ref(false);
 
     <div class="color-picker">
       <div class="color-picker-content">
-        <label for="color" class="hidden">Couleur</label>
         <input type="color" v-model="color" @input="setColor">
       </div>
     </div>
