@@ -5,7 +5,6 @@ import {inject} from 'vue'
 
 const colorPicker = inject('color');
 const counter = inject('counter');
-
 const config = useRuntimeConfig();
 const urlInput = ref('');
 const pixelColors = ref([]);
@@ -73,17 +72,14 @@ function changeColor({id, color}) {
       pixelColors.value[id] = color;
       counter.value++;
       pixelsModified.value.push(id);
-    } else {
-      for (let i = 0; i < pixelsModified.value.length; i++) {
-        if (pixelsModified.value[i] === id) {
-          pixelColors.value[id] = 'white';
-          counter.value--;
-          pixelsModified.value.splice(i, 1);
-        }
-      }
+    } else if (pixelColors.value[id] !== color && color === 'white') {
+      pixelColors.value[id] = 'white';
+      counter.value--;
+      pixelsModified.value = pixelsModified.value.filter(pixel => pixel !== id);
     }
   }
 }
+
 </script>
 
 <template>

@@ -23,10 +23,10 @@ async function openPaymentForm() {
   const finalArrayPixels = props.pixelsModified.map(i => ({
     id: i,
     color: props.pixelColors[i],
-    url: props.urlInput || 'www.paulmarniquet.com',
+    url: props.urlInput || 'https://www.paulmarniquet.com',
   }));
 
-  const pid = Math.floor(Math.random() * 1000000);
+  const pid = Math.floor(Math.random() * 10000000);
   localStorage.setItem('pixels', JSON.stringify(finalArrayPixels));
 
   const stripe = await loadStripe(config.public.STRIPE_SECRET_KEY);

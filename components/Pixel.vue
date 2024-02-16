@@ -8,7 +8,6 @@
 </template>
 
 <script setup>
-
 const props = defineProps({
   id: Number,
   url: String,
@@ -24,12 +23,20 @@ const color = ref(props.initialColor);
 
 function handleClick() {
   if (props.editMode) {
-    if (!updatingColor.value) {
+    if (color.value === 'white') {
       updatingColor.value = true;
-      color.value = selected.value ? 'white' : props.selectedColor;
+      color.value = !selected.value ? props.selectedColor : 'white';
       emits('changeColor', {id: props.id, color: color.value});
       selected.value = !selected.value;
       updatingColor.value = false;
+    } else {
+      if (color.value === props.selectedColor) {
+        updatingColor.value = true;
+        color.value = 'white';
+        emits('changeColor', {id: props.id, color: color.value});
+        selected.value = false;
+        updatingColor.value = false;
+      }
     }
   }
 }
