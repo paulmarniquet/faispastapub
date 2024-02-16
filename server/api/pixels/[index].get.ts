@@ -1,8 +1,8 @@
 import {PrismaClient} from '@prisma/client';
 
-export default defineEventHandler(async (event) => {
-    const prisma = new PrismaClient();
+const prisma = new PrismaClient();
 
+export default defineEventHandler(async (event) => {
     try {
         const pixel = await prisma.pixels.findUnique({
             where: {

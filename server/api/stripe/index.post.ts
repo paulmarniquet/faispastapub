@@ -1,8 +1,9 @@
 import Stripe from 'stripe';
 import {PrismaClient} from "@prisma/client";
 
+const prisma = new PrismaClient();
+
 export default defineEventHandler(async (event) => {
-    const prisma = new PrismaClient();
     try {
         const stripeEvent = await readBody<Stripe.Event>(event);
         if (stripeEvent.type === 'checkout.session.completed') {

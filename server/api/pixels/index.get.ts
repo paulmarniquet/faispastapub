@@ -1,8 +1,10 @@
 import {PrismaClient} from '@prisma/client';
 
-export default defineEventHandler(async (event) => {
-    const prisma = new PrismaClient();
+const prisma = new PrismaClient();
 
+export default defineEventHandler(async (event) => {
+
+    const config = useRuntimeConfig;
     try {
         const pixels = await prisma.pixels.findMany({
             orderBy: {

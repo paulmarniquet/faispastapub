@@ -22,7 +22,6 @@ onBeforeMount(async () => {
 async function getPixels() {
   try {
     const pixelsResponse = await fetch(config.public.API_URL + '/api/pixels', {
-      mode: 'cors',
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

@@ -1,7 +1,8 @@
 import {PrismaClient} from '@prisma/client';
 
+const prisma = new PrismaClient();
+
 export default defineEventHandler(async (event) => {
-    const prisma = new PrismaClient();
     try {
         const body = await readBody(event);
         const payment = await prisma.payments.findFirst({

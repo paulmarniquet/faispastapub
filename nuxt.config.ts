@@ -12,6 +12,14 @@ export default defineNuxtConfig({
         }
     },
 
+    routeRules: {
+        '/': {
+            isr: true,
+            prerender: true,
+            cors: true,
+        }
+    },
+
     colorMode: {
         preference: "light",
         fallback: "light",
