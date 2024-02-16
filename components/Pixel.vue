@@ -23,7 +23,7 @@ const color = ref(props.initialColor);
 
 const links = document.querySelectorAll('.color-picker a');
 for (let i = 0; i < links.length; i++) {
-  if (links[i].href !== "https://www.paulmarniquet.com") {
+  if (links[i].href !== "https://www.paulmarniquet.fr") {
     links[i].style.pointerEvents = 'none';
   }
 }
