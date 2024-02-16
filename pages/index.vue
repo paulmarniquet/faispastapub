@@ -2,6 +2,7 @@
 import Payment from "~/components/Payment.vue";
 import Pixel from "~/components/Pixel.vue";
 import {inject} from 'vue'
+import Room from "~/components/Room.vue";
 
 const colorPicker = inject('color');
 const counter = inject('counter');
@@ -113,6 +114,7 @@ function changeColor({id, color}) {
       </div>
     </div>
   </div>
+  <Room/>
 </template>
 
 <style scoped>

@@ -9,6 +9,7 @@ export default defineNuxtConfig({
             POSTGRES_URL_NON_POOLING: process.env.POSTGRES_URL_NON_POOLING,
             STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
             PRICE_ID: process.env.PRICE_ID,
+            LIVEBLOCKS_API_KEY: process.env.LIVEBLOCKS_API_KEY,
         }
     },
 
