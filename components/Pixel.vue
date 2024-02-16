@@ -57,5 +57,6 @@ function handleClick() {
   font-size: 10px;
   width: 10px;
   height: 10px;
+  z-index: 0;
 }
 </style>

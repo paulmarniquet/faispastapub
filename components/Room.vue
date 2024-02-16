@@ -1,30 +1,42 @@
-<script setup>
+<template>
+  <main class="room" @pointerleave="handlePointerLeave" @pointermove="handlePointerMove">
+    <template v-for="{ connectionId, presence } in others">
+      <Cursor
+          v-if="presence.cursor!"
+          :color="COLORS[connectionId % COLORS.length]"
+          :x="presence.cursor.x!"
+          :y="presence.cursor.y!"
+      />
+    </template>
+  </main>
+</template>
+
+<script setup lang="ts">
 import {createClient} from "@liveblocks/client";
-import WebSocket from "ws";
+import {decode} from "base-64";
 
 const config = useRuntimeConfig();
 
 const client = createClient({
-  polyfills: {
-    fetch,
-    WebSocket,
-  },
+  throttle: 17,
   publicApiKey: config.public.LIVEBLOCKS_API_KEY,
+  polyfills: {
+    fetch: fetch as any,
+    atob(base64: string) {
+      return decode(base64);
+    },
+  },
 });
 
-const {room, leave} = client.enterRoom("my-room", {
-  initialPresence: {}
-});
+const {room, leave} = client.enterRoom("my-room", {initialPresence: {}});
 
+const presence = ref(room.getPresence());
 const others = ref(room.getOthers());
-const myPresence = ref(room.getPresence());
-
 const unsubscribeOthers = room.subscribe("others", (updatedOthers) => {
-  others.value = updatedOthers;
+  others.value = updatedOthers as any;
 });
-
 const unsubscribePresence = room.subscribe("my-presence", (updatedPresence) => {
-  myPresence.value = updatedPresence;
+  presence.value = updatedPresence;
 });
 
 onUnmounted(() => {
@@ -32,7 +44,7 @@ onUnmounted(() => {
   unsubscribeOthers();
 });
 
-function handlePointerMove(event) {
+function handlePointerMove(event: MouseEvent) {
   room.updatePresence({
     cursor: {
       x: Math.round(event.clientX),
@@ -60,27 +72,17 @@ const COLORS = [
 
 </script>
 
-<template>
-  <main @pointerleave="handlePointerLeave" @pointermove="handlePointerMove" class="relative h-full w-full bg-gray-100">
-    <div class="text">
-      {{
-        myPresence?.cursor
-            ? `${myPresence.cursor.x} × ${myPresence.cursor.y}`
-            : "Move your cursor to broadcast its position to other people in the room."
-      }}
-    </div>
-
-    <template v-for="{ connectionId, myPresence } in others">
-      <Cursor
-          v-if="myPresence.cursor"
-          :color="COLORS[connectionId % COLORS.length]"
-          :x="myPresence.cursor.x"
-          :y="myPresence.cursor.y"
-      />
-    </template>
-  </main>
-</template>
-
 <style scoped>
-
+main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  touch-action: none;
+  z-index: 0;
+}
 </style>

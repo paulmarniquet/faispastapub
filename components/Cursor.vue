@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-import {defineProps} from 'vue';
-
-
 const {color, x, y} = defineProps<{
   color: string;
   x: number;
