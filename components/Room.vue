@@ -79,6 +79,6 @@ main {
   place-content: center;
   place-items: center;
   touch-action: none;
-  z-index: 0;
+  z-index: -10;
 }
 </style>
