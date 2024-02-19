@@ -13,6 +13,7 @@ export default {
     darkMode: "class",
     content: [
         "./components/**/*.{js,vue,ts}",
+        "./layouts/**/*.vue",
         "./pages/**/*.vue",
         "./default.vue",
         "./error.vue",
