@@ -40,7 +40,7 @@ onUnmounted(() => {
   unsubscribeOthers();
 });
 
-function handlePointerMove(event: MouseEvent) {
+function handlePointerMove(event: PointerEvent) {
   room.updatePresence({
     cursor: {
       x: Math.round(event.clientX),
@@ -78,7 +78,6 @@ main {
   display: flex;
   place-content: center;
   place-items: center;
-  touch-action: none;
-  z-index: -10;
+  z-index: -1;
 }
 </style>

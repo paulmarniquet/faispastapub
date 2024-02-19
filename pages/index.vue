@@ -104,8 +104,9 @@ function changeColor({id, color}) {
           />
         </div>
       </div>
+      <Room/>
+
       <div class="grid" ref="grid">
-        <Room/>
         <Pixel v-for="(color, index) in pixelColors" :key="index" :id="index + 1"
                :initialColor="color"
                :selectedColor="colorPicker"
