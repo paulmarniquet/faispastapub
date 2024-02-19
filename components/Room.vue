@@ -1,13 +1,10 @@
 <template>
-  <main class="room" @pointerleave="handlePointerLeave" @pointermove="handlePointerMove">
-    <template v-for="{ connectionId, presence } in others">
-      <Cursor
-          v-if="presence.cursor!"
-          :color="COLORS[connectionId % COLORS.length]"
-          :x="presence.cursor.x!"
-          :y="presence.cursor.y!"
-      />
-    </template>
+  <main class="room">
+    <div class="relative bg-white rounded-full p-2 text-center text-xs text-gray-700">
+      <p>
+        Il y a {{ others.length }} personne{{ others.length > 1 ? 's' : '' }} ici
+      </p>
+    </div>
   </main>
 </template>
 
@@ -15,69 +12,42 @@
 import {createClient} from "@liveblocks/client";
 
 const config = useRuntimeConfig();
-
 const client = createClient({
-  throttle: 17,
   publicApiKey: config.public.LIVEBLOCKS_API_KEY,
-  polyfills: {
-    fetch: fetch as any,
-  },
 });
-
-const {room, leave} = client.enterRoom("my-room", {initialPresence: {}});
-
-const presence = ref(room.getPresence());
+const {room} = client.enterRoom("my-room", {initialPresence: {}});
 const others = ref(room.getOthers());
 const unsubscribeOthers = room.subscribe("others", (updatedOthers) => {
   others.value = updatedOthers as any;
 });
-const unsubscribePresence = room.subscribe("my-presence", (updatedPresence) => {
-  presence.value = updatedPresence;
-});
 
 onUnmounted(() => {
-  unsubscribePresence();
   unsubscribeOthers();
 });
-
-function handlePointerMove(event: PointerEvent) {
-  room.updatePresence({
-    cursor: {
-      x: Math.round(event.clientX),
-      y: Math.round(event.clientY),
-    },
-  });
-}
-
-function handlePointerLeave() {
-  room.updatePresence({
-    cursor: null,
-  });
-}
-
-const COLORS = [
-  "#E57373",
-  "#9575CD",
-  "#4FC3F7",
-  "#81C784",
-  "#FFF176",
-  "#FF8A65",
-  "#F06292",
-  "#7986CB",
-];
 
 </script>
 
 <style scoped>
 main {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+main div {
+  min-width: 24px;
+  height: 24px;
   display: flex;
-  place-content: center;
-  place-items: center;
-  z-index: -1;
+  align-items: center;
+  justify-content: center;
+  background-color: #3182ce;
+  border-radius: 9999px;
+}
+
+main p {
+  margin: 0;
+  color: white;
+  font-size: 12px;
 }
 </style>
