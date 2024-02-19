@@ -3,6 +3,7 @@ import Payment from "~/components/Payment.vue";
 import Pixel from "~/components/Pixel.vue";
 import {inject} from 'vue'
 import Room from "~/components/Room.vue";
+import SelectPicker from "~/components/SelectPicker.vue";
 
 const colorPicker = inject('color');
 const counter = inject('counter');
@@ -73,53 +74,71 @@ async function successPayment() {
 }
 
 function changeColor({id, color}) {
-    if (pixelColors.value[id] === 'white') {
-      counter.value++;
-      pixelColors.value[id] = color;
-      pixelsModified.value.push(id);
-    } else if (pixelColors.value[id] !== color && color === 'white') {
-      counter.value--;
-      pixelColors.value[id] = 'white';
-      pixelsModified.value = pixelsModified.value.filter(pixel => pixel !== id);
-    }
+  if (pixelColors.value[id] === 'white') {
+    counter.value++;
+    pixelColors.value[id] = color;
+    pixelsModified.value.push(id);
+  } else if (pixelColors.value[id] !== color && color === 'white') {
+    counter.value--;
+    pixelColors.value[id] = 'white';
+    pixelsModified.value = pixelsModified.value.filter(pixel => pixel !== id);
+  }
 }
-
 </script>
-
 <template>
-  <div
-      class="h-screen flex flex-col justify-between bg-white rounded-tl-lg overflow-hidden shadow-md border border-inherit">
-    <div class="flex flex-center justify-start w-screen">
-      <div class="w-1/4 flex flex-col justify-items-start items-center">
-        <div>
-          <input type="url"
-                 placeholder="https//www.votresite.com"
-                 v-model="urlInput"
-                 class="w-full h-10 border-2 border-black rounded-lg p-2"/>
+  <div class="bg-pink w-full h-full flex flex-row">
+    <div class="sidebar w-1/4 border-2 border-gray-200 rounded-xl flex justify-center">
+      <div class="w-[20rem] flex flex-col start bg-grey rounded-r-lg h-20">
+
+        <div class="flex">
+          <p class="text-color-text/60 p-2 text-center my-4">
+            Bienvenue sur la page à 1 million.
+            <br>Ici vous pouvez acheter des pixels pour 1€ l'unité dans le but de
+            participer à un projet communautaire.
+          </p>
+        </div>
+
+        <SelectPicker v-model="color"/>
+
+
+        <div class="w-100 p-2">
+          <label>
+            <span class="text-color-primary/75">Lien de votre pixel</span>
+            <input type="url"
+                   v-model="urlInput"
+                   class="w-full h-10 mt-2 p-2 border-[1px] border-color-primary rounded mb-5 text-color-text/75"
+                   placeholder="https://www.votresite.com"/>
+          </label>
+
+          <div class="flex flex-row justify-center items-center mb-2">
+            <span class="text-color-primary bold text-2xl">{{ counter }}€</span>
+          </div>
 
           <Payment :number-pixels="counter"
                    :pixelsModified="pixelsModified"
                    :pixelColors="pixelColors"
                    :urlInput="urlInput"
           />
+
         </div>
       </div>
-      <Room/>
+    </div>
 
-      <div class="grid" ref="grid">
-        <Pixel v-for="(color, index) in pixelColors" :key="index" :id="index + 1"
-               :initialColor="color"
-               :selectedColor="colorPicker"
-               :url="pixelArray[index].url"
-               @changeColor="changeColor"
-        />
-      </div>
+    <div class="grid" ref="grid">
+      <Pixel v-for="(color, index) in pixelColors" :key="index" :id="index + 1"
+             :initialColor="color"
+             :selectedColor="colorPicker"
+             :url="pixelArray[index].url"
+             @changeColor="changeColor"
+      />
     </div>
   </div>
+  <Room/>
 </template>
 
 <style scoped>
 .grid {
+  display: grid;
   grid-template-columns: repeat(100, 1fr);
   grid-template-rows: repeat(100, 1fr);
 }

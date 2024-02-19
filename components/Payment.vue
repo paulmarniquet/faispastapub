@@ -1,16 +1,15 @@
 <template>
   <div>
-    <button @click="openPaymentForm" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    <button @click="openPaymentForm"
+            class="w-full bg-color-primary/80 hover:bg-color-primary text-color-background font-bold py-3 px-4 rounded">
       Payer
     </button>
   </div>
 </template>
 
 <script setup="ts">
-import {defineProps, defineEmits} from 'vue';
 import {loadStripe} from "@stripe/stripe-js";
 
-const emits = defineEmits(['payment-successful']);
 const config = useRuntimeConfig();
 const props = defineProps({
   numberPixels: Number,

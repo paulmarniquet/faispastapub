@@ -17,8 +17,7 @@ const showColorPicker = ref(false);
 
 <template>
   <div
-      class="left-0 bg-white rounded-r-lg h-20 flex flex-row w-[3rem]'">
-
+      class="left-0 rounded-r-lg h-20 flex flex-row w-[3rem]' my-4">
     <div class="color-picker">
       <div class="color-picker-content">
         <input type="color" v-model="color" @input="setColor">
