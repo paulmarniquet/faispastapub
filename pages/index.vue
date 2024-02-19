@@ -90,6 +90,19 @@ function changeColor({id, color}) {
     <div class="sidebar w-1/4 border-2 border-gray-200 rounded-xl flex justify-center">
       <div class="w-[20rem] flex flex-col start bg-grey rounded-r-lg h-20">
 
+        <div class="flex flex-row justify-between align-center">
+          <div class="w-10 h-10 bg-color-primary"></div>
+          <div class="flex flex-row items-center pr-3">
+
+            <a href="https://x.com/HugoRCD__?s=20" aria-label="Twitter">
+              <LucideTwitter
+                  size="24"
+                  class="text-color-text cursor-pointer hover:text-color-primary"
+              />
+            </a>
+          </div>
+        </div>
+
         <div class="flex">
           <p class="text-color-text/60 p-2 text-center my-4">
             Bienvenue sur la page à 1 million.
