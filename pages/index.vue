@@ -91,46 +91,46 @@ function changeColor({id, color}) {
       <div class="fixed">
         <div class="w-[20rem] flex flex-col start bg-grey rounded-r-lg h-20 mt-6">
 
-        <div class="flex flex-row justify-between align-center">
-          <div class="w-10 h-10 bg-color-primary"></div>
-          <div class="flex flex-row items-center pr-3">
+          <div class="flex flex-row justify-between align-center">
+            <div class="w-10 h-10 bg-color-primary"></div>
+            <div class="flex flex-row items-center pr-3">
 
-            <a href="https://x.com/HugoRCD__?s=20" aria-label="Twitter">
-              <LucideTwitter
-                  size="24"
-                  class="text-color-text cursor-pointer hover:text-color-primary"
-              />
-            </a>
+              <a href="https://x.com/HugoRCD__?s=20" aria-label="Twitter">
+                <LucideTwitter
+                    size="24"
+                    class="text-color-text cursor-pointer hover:text-color-primary"
+                />
+              </a>
+            </div>
+          </div>
+
+          <div class="flex">
+            <p class="text-color-text/60 p-2 text-center my-4">
+              Bienvenue sur la page à 1 million.
+              <br>Ici vous pouvez acheter des pixels pour 1€ l'unité dans le but de
+              participer à un projet communautaire.
+            </p>
+          </div>
+
+          <SelectPicker v-model="color"/>
+
+
+          <div class="w-100 p-2">
+            <label>
+              <span class="text-color-primary/75">Lien de votre pixel</span>
+              <input type="url"
+                     v-model="urlInput"
+                     class="w-full h-10 mt-2 p-2 border-[1px] border-color-primary rounded mb-5 text-color-text/75"
+                     placeholder="https://www.votresite.com"/>
+            </label>
+            <Payment :numberPixels="counter"
+                     :pixelsModified="pixelsModified"
+                     :pixelColors="pixelColors"
+                     :urlInput="urlInput"
+            />
+
           </div>
         </div>
-
-        <div class="flex">
-          <p class="text-color-text/60 p-2 text-center my-4">
-            Bienvenue sur la page à 1 million.
-            <br>Ici vous pouvez acheter des pixels pour 1€ l'unité dans le but de
-            participer à un projet communautaire.
-          </p>
-        </div>
-
-        <SelectPicker v-model="color"/>
-
-
-        <div class="w-100 p-2">
-          <label>
-            <span class="text-color-primary/75">Lien de votre pixel</span>
-            <input type="url"
-                   v-model="urlInput"
-                   class="w-full h-10 mt-2 p-2 border-[1px] border-color-primary rounded mb-5 text-color-text/75"
-                   placeholder="https://www.votresite.com"/>
-          </label>
-          <Payment :numberPixels="counter"
-                   :pixelsModified="pixelsModified"
-                   :pixelColors="pixelColors"
-                   :urlInput="urlInput"
-          />
-
-        </div>
-      </div>
       </div>
     </div>
 
