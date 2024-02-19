@@ -27,5 +27,5 @@ export default defineNuxtConfig({
         storageKey: "nuxt-starter-color-mode",
     },
 
-    devtools: {enabled: true},
+    devtools: {enabled: false},
 })

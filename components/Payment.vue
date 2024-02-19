@@ -2,7 +2,7 @@
   <div>
     <button @click="openPaymentForm"
             class="w-full bg-color-primary/80 hover:bg-color-primary text-color-background font-bold py-3 px-4 rounded">
-      Payer
+      Payer {{ props.numberPixels }} €
     </button>
   </div>
 </template>

@@ -87,7 +87,8 @@ function changeColor({id, color}) {
 </script>
 <template>
   <div class="bg-pink w-full h-full flex flex-row">
-    <div class="sidebar w-1/4 border-2 border-gray-200 rounded-xl flex justify-center">
+    <div class="sidebar w-1/4 border-2 border-gray-200 rounded-xl flex mt-6 justify-center">
+      <div class="fixed">
       <div class="w-[20rem] flex flex-col start bg-grey rounded-r-lg h-20">
 
         <div class="flex flex-row justify-between align-center">
@@ -122,18 +123,14 @@ function changeColor({id, color}) {
                    class="w-full h-10 mt-2 p-2 border-[1px] border-color-primary rounded mb-5 text-color-text/75"
                    placeholder="https://www.votresite.com"/>
           </label>
-
-          <div class="flex flex-row justify-center items-center mb-2">
-            <span class="text-color-primary bold text-2xl">{{ counter }}€</span>
-          </div>
-
-          <Payment :number-pixels="counter"
+          <Payment :numberPixels="counter"
                    :pixelsModified="pixelsModified"
                    :pixelColors="pixelColors"
                    :urlInput="urlInput"
           />
 
         </div>
+      </div>
       </div>
     </div>
 
@@ -152,7 +149,8 @@ function changeColor({id, color}) {
 <style scoped>
 .grid {
   display: grid;
-  grid-template-columns: repeat(100, 1fr);
-  grid-template-rows: repeat(100, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(10px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(10px, 1fr));
+  width: 75%;
 }
 </style>
