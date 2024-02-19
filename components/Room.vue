@@ -1,7 +1,7 @@
 <template>
-  <main class="room">
-    <div class="relative bg-white rounded-full p-2 text-center text-xs text-gray-700">
-      <p>
+  <main class="room opacity-80 hover:opacity-0 transition-opacity duration-300">
+    <div class="relative bg-white rounded-full p-2 text-center text-xs text-gray-700 pointer-events-none">
+      <p class="pointer-events-none">
         Il y a {{ others.length }} personne{{ others.length > 1 ? 's' : '' }} ici
       </p>
     </div>

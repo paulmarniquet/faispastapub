@@ -87,9 +87,9 @@ function changeColor({id, color}) {
 </script>
 <template>
   <div class="bg-pink w-full h-full flex flex-row">
-    <div class="sidebar w-1/4 border-2 border-gray-200 rounded-xl flex mt-6 justify-center">
+    <div class="sidebar w-1/4 border-2 border-gray-200 rounded-xl flex justify-center">
       <div class="fixed">
-      <div class="w-[20rem] flex flex-col start bg-grey rounded-r-lg h-20">
+        <div class="w-[20rem] flex flex-col start bg-grey rounded-r-lg h-20 mt-6">
 
         <div class="flex flex-row justify-between align-center">
           <div class="w-10 h-10 bg-color-primary"></div>

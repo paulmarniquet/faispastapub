@@ -2,7 +2,7 @@
   <div :id="id"
        @click="handleClick"
        :style="{ backgroundColor: color }"
-       class="border-[0.05px] bg-white color-picker">
+       class="bg-white color-picker">
     <a :href="props.url" aria-label="pixel"></a>
   </div>
 </template>
@@ -58,5 +58,6 @@ function handleClick() {
   width: 10px;
   height: 10px;
   z-index: 0;
+  border: 0.1px solid rgb(243 244 246);
 }
 </style>
