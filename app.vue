@@ -11,9 +11,9 @@ provide('counter', counter)
 <template>
   <Html lang="en">
   <title>
-    La page à un million
+    Fais pas ta pub
   </title>
-  <meta name="description" content="La page qui valait 1 million"/>
+  <meta name="description" content="Donne un peu, fais pas ta pub.."/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="public/favicon.ico">
   <Body class="selection:bg-neutral-200 dark:selection:bg-neutral-700 bg-color-background relative">

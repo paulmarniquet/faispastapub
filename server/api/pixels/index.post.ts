@@ -6,10 +6,10 @@ export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig();
 
     try {
-        /*        const referer = event.headers.get('Referer');
+        const referer = event.headers.get('Referer');
                 if (!referer || !referer.includes(config.public.API_URL)) {
                     return new Response('Unauthorized', {status: 401});
-                }*/
+                }
 
         const body = await readBody(event);
         for (let i = 0; i < 9000; i++) {

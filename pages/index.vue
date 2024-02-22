@@ -92,23 +92,30 @@ function changeColor({id, color}) {
         <div class="w-[20rem] flex flex-col start bg-grey rounded-r-lg h-20 mt-6">
 
           <div class="flex flex-row justify-between align-center">
-            <div class="w-10 h-10 bg-color-primary"></div>
+
+            <a class="p-2"
+               href="https://paulmarniquet.fr" aria-label="portfolio">
+              <img
+                  class="w-10 hover:animate-spin opacity-70 hover:opacity-100 transition-all duration-300"
+                  src="../assets/logo/paul.svg" alt="">
+            </a>
+
             <div class="flex flex-row items-center pr-3">
 
-              <a href="https://x.com/HugoRCD__?s=20" aria-label="Twitter">
-                <LucideTwitter
-                    size="24"
-                    class="text-color-text cursor-pointer hover:text-color-primary"
-                />
+              <a href="https://johanncvl.com" aria-label="portfolio">
+                <img class="w-10 hover:animate-spin opacity-70 hover:opacity-100 transition-all duration-300"
+                     src="../assets/logo/johann.svg" alt="">
               </a>
             </div>
           </div>
 
-          <div class="flex">
-            <p class="text-color-text/60 p-2 text-center my-4">
-              Bienvenue sur la page à 1 million.
-              <br>Ici vous pouvez acheter des pixels pour 1€ l'unité dans le but de
-              participer à un projet communautaire.
+          <div class="flex flex-col">
+            <h1 class="text-color-text/95 p-2 text-center mt-12 mb-6 text-lg">
+              Donne un peu, fais pas ta pub..
+            </h1>
+            <p class="text-color-text/60 p-2 text-center">
+              Ce mois-ci, tu peux soutenir <a href="https://www.la-spa.fr">la SPA</a> en achetant un pixel pour 1€.
+              En échange tu pourras mettre un lien vers ton site ou ton réseau social.
             </p>
           </div>
 
@@ -117,7 +124,7 @@ function changeColor({id, color}) {
 
           <div class="w-100 p-2">
             <label>
-              <span class="text-color-primary/75">Lien de votre pixel</span>
+              <span class="text-color-primary/75">Lien vers ton site/réseau</span>
               <input type="url"
                      v-model="urlInput"
                      class="w-full h-10 mt-2 p-2 border-[1px] border-color-primary rounded mb-5 text-color-text/75"
