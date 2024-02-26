@@ -1,31 +1,37 @@
-# Million Dollar Homepage
+# faispastapub.fr
 
-Bienvenue sur la recréation de la célèbre "Homepage à un million de dollars" ! Notre projet vous permet de devenir
-propriétaire d'un pixel pour seulement 1 euro, où vous pouvez afficher votre propre publicité. C'est une opportunité
-unique d'afficher votre message à un large public sur une plateforme emblématique.
+Notre projet vous offre la possibilité d'acquérir un pixel pour seulement 1 euro. Vous pourrez afficher votre propre
+publicité et diriger les utilisateurs vers vos réseaux sociaux ou sites web.
 
-## Fonctionnalités
+## Concept
 
-- **Achat de Pixels**: Choisissez le pixel que vous souhaitez acheter sur la grille et ajoutez votre publicité.
+- **Achat de pixels**: Choisissez le pixel que vous souhaitez acheter sur la grille et ajoutez votre publicité ou votre
+  lien.
 
-- **Gestion de Publicité**: Téléchargez votre image publicitaire et spécifiez le lien vers lequel vous souhaitez
-  rediriger les utilisateurs lorsqu'ils cliquent sur votre pixel.
+- **Soutien aux associations**: Chaque euro dépensé pour l'achat d'un pixel est également une contribution à une
+  association caritative différente chaque mois.
 
-- **Interface Intuitive**: Une interface utilisateur conviviale vous permet de naviguer facilement à travers la grille
-  et de gérer vos pixels.
+- **Totale transparence**: À chaque palier financier atteint, nous fournirons des preuves de nos contributions aux
+  associations sur le site web.
 
-## Environnement Technique
+## Technologie
 
-- **Framework Frontend**: Nous utilisons [Nuxt.js](https://nuxtjs.org/), un framework Vue.js qui permet de créer des
-  applications web puissantes et évolutives.
+- **Framework Frontend**: Notre interface utilisateur est développée avec [Nuxt.js](https://nuxtjs.org/), un framework
+  Vue.js qui offre des performances optimales et une structure robuste pour les applications web modernes.
 
-- **Base de Données**: Nous avons opté pour PostgreSQL comme système de gestion de base de données pour stocker toutes
-  les informations sur les pixels achetés et les publicités associées.
+- **Base de Données**: Nous avons choisi PostgreSQL comme système de gestion de base de données pour stocker toutes les
+  informations sur les pixels achetés et les publicités associées, assurant ainsi une gestion efficace des données.
 
-- **ORM**: Nous utilisons Prisma comme ORM (Object-Relational Mapping) pour faciliter l'interaction avec notre base de
-  données PostgreSQL.
+- **Intégration de Paiement**: Nous avons intégré Stripe pour le traitement des paiements, offrant à nos utilisateurs
+  une expérience sécurisée et fluide lors de l'achat de pixels publicitaires.
+
+- **ORM**: Prisma est utilisé comme ORM (Object-Relational Mapping), simplifiant ainsi l'interaction avec notre base de
+  données PostgreSQL et assurant une manipulation des données efficace et sécurisée.
+
+- **Hébergement**: Notre base de données est hébergée sur Amazon Web Services (AWS), garantissant une fiabilité et une
+  disponibilité maximales pour nos utilisateurs.
 
 ---
 
-Nous espérons que vous apprécierez utiliser notre "Million Dollar Homepage" ! Si vous avez des questions ou des
-suggestions, n'hésitez pas à nous contacter. Merci de votre soutien ! 🚀
+Si vous avez des questions, des suggestions ou si vous souhaitez simplement en savoir plus sur notre initiative,
+n'hésitez pas à nous contacter.
