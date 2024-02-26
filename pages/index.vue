@@ -92,12 +92,14 @@ function changeColor({id, color}) {
         <div class="w-[20rem] flex flex-col start bg-grey rounded-r-lg h-20 mt-6">
 
           <div class="flex flex-col">
-            <h1 class="text-color-text/95 p-2 text-center mt-12 mb-6 text-lg">
+            <img class="w-16 mx-auto mt-6"
+                 src="../assets/logo/fptplogo.png" alt="">
+            <h1 class="text-color-text/95 p-2 text-center mt-2 mb-6 text-lg">
               Donne un peu, fais pas ta pub..
             </h1>
             <p class="text-color-text/60 p-2 text-center">
               Ce mois-ci, tu peux soutenir <a href="https://www.la-spa.fr">la SPA</a> en achetant un pixel pour 1€.
-              En échange tu pourras mettre un lien vers ton site ou ton réseau social.
+              <br>En échange tu pourras mettre un lien vers ton site ou ton réseau social.
             </p>
           </div>
 
@@ -119,7 +121,7 @@ function changeColor({id, color}) {
             />
 
           </div>
-          <div class="flex flex-row justify-between align-center mt-36">
+          <div class="flex flex-row justify-between align-center mt-24">
 
             <a class="p-2"
                href="https://paulmarniquet.fr" aria-label="portfolio">
