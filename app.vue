@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {provide} from 'vue'
 
-const color = ref('#FF0000')
+const color = ref('#ED5355')
 const counter = ref(0);
 provide('color', color)
 provide('counter', counter)

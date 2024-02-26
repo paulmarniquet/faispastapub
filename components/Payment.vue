@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="openPaymentForm"
-            class="w-full bg-color-primary/80 hover:bg-color-primary text-color-background font-bold py-3 px-4 rounded">
+            class="w-full bg-[#ED5355] hover:bg-[#E04E50] transition-all duration-300 text-color-background font-bold py-3 px-4 rounded-2xl">
       Payer {{ props.numberPixels }} €
     </button>
   </div>

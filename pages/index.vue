@@ -108,10 +108,11 @@ function changeColor({id, color}) {
 
           <div class="w-100 p-2">
             <label>
-              <span class="text-color-primary/75">Lien vers ton site/réseau</span>
+              <span class="text-[#ED5355]"
+              >Lien vers ton site/réseau</span>
               <input type="url"
                      v-model="urlInput"
-                     class="w-full h-10 mt-2 p-2 border-[1px] border-color-primary rounded mb-5 text-color-text/75"
+                     class="w-full h-10 mt-2 p-2 border-[1px] border-[#ED5355] rounded mb-5 text-color-text/95"
                      placeholder="https://www.votresite.com"/>
             </label>
             <Payment :numberPixels="counter"
