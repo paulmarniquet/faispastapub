@@ -91,24 +91,6 @@ function changeColor({id, color}) {
       <div class="fixed">
         <div class="w-[20rem] flex flex-col start bg-grey rounded-r-lg h-20 mt-6">
 
-          <div class="flex flex-row justify-between align-center">
-
-            <a class="p-2"
-               href="https://paulmarniquet.fr" aria-label="portfolio">
-              <img
-                  class="w-10 hover:animate-spin opacity-70 hover:opacity-100 transition-all duration-300"
-                  src="../assets/logo/paul.svg" alt="">
-            </a>
-
-            <div class="flex flex-row items-center pr-3">
-
-              <a href="https://johanncvl.com" aria-label="portfolio">
-                <img class="w-10 hover:animate-spin opacity-70 hover:opacity-100 transition-all duration-300"
-                     src="../assets/logo/johann.svg" alt="">
-              </a>
-            </div>
-          </div>
-
           <div class="flex flex-col">
             <h1 class="text-color-text/95 p-2 text-center mt-12 mb-6 text-lg">
               Donne un peu, fais pas ta pub..
@@ -136,6 +118,23 @@ function changeColor({id, color}) {
                      :urlInput="urlInput"
             />
 
+          </div>
+          <div class="flex flex-row justify-between align-center mt-36">
+
+            <a class="p-2"
+               href="https://paulmarniquet.fr" aria-label="portfolio">
+              <img
+                  class="w-10 hover:animate-spin opacity-70 hover:opacity-100 transition-all duration-300"
+                  src="../assets/logo/paul.svg" alt="">
+            </a>
+
+            <div class="flex flex-row items-center pr-3">
+
+              <a href="https://johanncvl.com" aria-label="portfolio">
+                <img class="w-10 hover:animate-spin opacity-70 hover:opacity-100 transition-all duration-300"
+                     src="../assets/logo/johann.svg" alt="">
+              </a>
+            </div>
           </div>
         </div>
       </div>
